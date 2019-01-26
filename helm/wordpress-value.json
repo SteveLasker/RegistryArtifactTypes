@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 2,
+  "layers": [
+    {
+      "mediaType": "application/vnd.cncf.helm.layer.v3+json",
+      "size": 3155,
+      "digest": "sha256:9a1a13172ed974323f7c35153e8b23b8fa1c85355b6b26cc3127e640e45ef0aa"
+    }
+  ]
+}
