@@ -59,3 +59,15 @@ duffle install \
   demo42.azurecr.io/sample/cnab/hello-world:1.0
 ```
 
+## Registry Listing
+
+While tools should have knowledge of the artifacts they work with, so should a registry. By providing information on the artifact, registries can display artifacts, with context and details.
+
+**Registry:** `demo42.azurecr.io`
+
+| artifact reference | type | actions|
+|-|-|-|
+| `samples/image/hello-world:1.0` | docker image | `docker pull ...` |
+| `samples/helm/hello-world:1.0` | helm chart | `helm pull ...` |
+| `samples/arm/hello-world:1.0` | arm | `az deployment create ...` |
+| `samples/cnab/hello-world:1.0` | CNAB | `duffle pull ...` |
