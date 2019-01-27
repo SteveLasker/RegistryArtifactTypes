@@ -2,6 +2,7 @@
 OCI compliant registries are becoming [Cloud Native Artifact Registries](https://stevelasker.blog/2019/01/25/cloud-native-artifact-stores-evolve-from-container-registries/)
 
 While a registry could just store arbitrary objects, leaving it to the user to know what blob should be used by which tool, there are many benefits to knowing what each artifact is.
+
 Some of the challenges include: 
 
 - If registries support all sorts of artifacts (multiple dozens of types) how do tools and users reason over them? 
@@ -21,14 +22,40 @@ The [OCI Distribution Image Specification](https://github.com/opencontainers/ima
 
 This repo attempts to demonstrate several structured use cases of the OCI Indexes to scale from multi-layered, multi-architecture docker images, to relatively simple helm charts, to more complex CNAB examples that can encompass every type of artifact in a registry.
 
+## Expanded Media Types
+To identify registry artifacts the proposal makes use of an [expanded list of media types](./mediaTypes.md)
 ## Baseline Reference - Docker Images
 
 [Container images](./container-image/readme.md) are the baseline. There's nothing newly proposed here, rather reference examples, used for comparison in Helm and CNAB.
+
+**example:**
+
+```sh
+docker run demo42.azurecr.io/samples/image/hello-world:1.0
+```
 
 ## Helm Charts
 
 [Helm charts](./helm/readme.md) represent a collection of files used for a kubernetes deployment. While a single helm chart could be represented as a single manifest and compressed layer, there are some interesting possibilities of reuse and change tracking.
 
-## CNAB - Cloud Native Application Bundles
+**example**
+
+```sh
+helm upgrade \
+  hello-world \
+  demo42.azurecr.io/sample/helm/hello-world:1.0 \
+  --reuse-values \
+  --set web.image=demo42.azurecr.io/samples/image/hello-world:1.0
+```
+  ## CNAB - Cloud Native Application Bundles
 
 [CNAB](./cnab/readme.md) is interesting as they aren't just a specific artifact in a registry, rather they reference other artifacts in a registry. A CNAB can reference an invocation image, a Helm Chart, or several other images that would be deployed. It may also reference arm or cloud formation templates to establish the infrastructure.
+
+**example**
+
+```sh
+duffle install \
+  hello-world \
+  demo42.azurecr.io/sample/cnab/hello-world:1.0
+```
+

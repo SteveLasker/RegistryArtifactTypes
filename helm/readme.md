@@ -3,7 +3,8 @@ Helm charts represent a [collection of files used for a kubernetes deployment](h
 - **resuse** - just as image layers are shared across images, being able to track different usages of wordpress charts can be useful. While reuse can also account for saving space in a registry, the total size of charts are closely equivalent to the manifests and metadata used to track them.
 - **change tracking** - when charts are used for a teams custom app, as the charts are deployed, images are continually rebuilt. For each build, a new/unique `:tag` should be created to assure consistent deployments. (see [Image Tagging Best Practices](https://stevelasker.blog/2018/03/01/docker-tagging-best-practices-for-tagging-and-versioning-docker-images/)). Rather than embed the image reference directly in [the chart](https://github.com/demo42/helloworld-deploy/blob/master/helm/helloworld/Chart.yaml), it's likely extracted, and either passed in as a parameter, or part of an updated [values.yaml](https://github.com/demo42/helloworld-deploy/blob/master/helm/helloworld/values.yaml) file. 
 
-  example:
+  **example:**
+
   ```sh
   helm upgrade customapp demo42.azurecr.io/apps/customapp:2.0 \
     --reuse-values \
