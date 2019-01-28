@@ -36,4 +36,15 @@ Bundles have unique media types, but also reference existing media types in a re
 - `application/vnd.oci.cnab.config` [CNAB Config](./cnab/readme.md#config) identifying invocation entry point/image
 - `application/vnd.oci.cnab.component.v1+json` [CNAB Component](./cnab/readme.md#component), an arbitrary object, not otherwise referenced as a OCI media type, contained within the bundle |
 
+## Media Type Short Names
+
+To provide for user friendly names, a list of media types and short/friendly names will be maintained. A link to the associated tool or info about the artifact will also be provided. 
+
+| Media Type | Display Name | Info | 
+|-|-|-|
+|`application/vnd.oci.image.index.v1+json` | Image | [Docker](https://www.docker.com/products/docker-desktop) |
+|`application/vnd.oci.image.manifest.v1+json` | Image | [Docker](https://www.docker.com/products/docker-desktop) |
+|`application/vnd.cncf.helm.index.v3+json` | Helm | [Helm](https://helm.sh)
+|`application/vnd.oci.cnab.index.v1+json` | CNAB | [Duffle](https://cnab.io)
+
 
