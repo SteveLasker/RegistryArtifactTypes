@@ -45,6 +45,6 @@ To provide for user friendly names, a list of media types and short/friendly nam
 |`application/vnd.oci.image.index.v1+json` | Image | [Docker](https://www.docker.com/products/docker-desktop) |
 |`application/vnd.oci.image.manifest.v1+json` | Image | [Docker](https://www.docker.com/products/docker-desktop) |
 |`application/vnd.cncf.helm.index.v3+json` | Helm | [Helm](https://helm.sh)
-|`application/vnd.oci.cnab.index.v1+json` | CNAB | [Duffle](https://cnab.io)
+|`application/vnd.oci.cnab.index.v1+json` | CNAB | [Duffle](https://cnab.io), [Docker-application](https://www.docker.com/search/node?keys=docker-application)|
 
 

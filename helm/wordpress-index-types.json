@@ -1,5 +1,6 @@
 {
   "schemaVersion": 2,
+  "mediaType": "application/vnd.oci.image.index.v1+json",
   "config": {
     "mediaType": "application/vnd.cncf.helm.chart.config.v1+json",
     "size": 7023,
