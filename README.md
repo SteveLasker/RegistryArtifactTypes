@@ -7,7 +7,8 @@ Some of the challenges include:
 
 - If registries support all sorts of artifacts (multiple dozens of types) how do tools and users reason over them? 
 - How would duffle search know to only list CNABs, Helm search list charts, Docker only list actual docker images and ARM or Cloud Formation tooling only list their templates?
-- How does a registry listing (like docker hub) list the various artifacts, showing them as the types they are?
+- How does a registry listing (like docker hub) list the various artifacts, showing them as the types they are? 
+- Can a registry show an icon and/or a short text identifier? 
 - How do registry listings know what actions to put on an artifact? (Run an image, deploy a Chart, install a foo2)?
 - How do vulnerability scanners know what they’re pulling, so they know how to scan them?
 - How do different teams, who work on independent components of a swath of services, push their independent components to the registry?
@@ -22,11 +23,9 @@ The [OCI Distribution Image Specification](https://github.com/opencontainers/ima
 
 This repo attempts to demonstrate several structured use cases of the OCI Indexes to scale from multi-layered, multi-architecture docker images, to relatively simple helm charts, to more complex CNAB examples that can encompass every type of artifact in a registry.
 
-## Expanded Media Types
-To identify registry artifacts the proposal makes use of an [expanded list of media types](./mediaTypes.md)
 ## Baseline Reference - Docker Images
 
-[Container images](./container-image/readme.md) are the baseline. There's nothing newly proposed here, rather reference examples, used for comparison in Helm and CNAB.
+To build up contextual knowledge, we'll start with [Container images](./container-image/readme.md) as the baseline. There's nothing newly proposed here, rather reference examples, used for comparison in Helm and CNAB.
 
 **example:**
 
@@ -49,7 +48,7 @@ helm upgrade \
 ```
   ## CNAB - Cloud Native Application Bundles
 
-[CNAB](./cnab/readme.md) is interesting as they aren't just a specific artifact in a registry, rather they reference other artifacts in a registry. A CNAB can reference an invocation image, a Helm Chart, or several other images that would be deployed. It may also reference arm or cloud formation templates to establish the infrastructure.
+[CNAB](./cnab/readme.md) is interesting as they aren't just a specific artifact in a registry, rather they can reference other artifacts in a registry. A CNAB can reference an invocation image, a Helm Chart, or several other images that would be deployed. It may also reference arm or cloud formation templates to establish the infrastructure.
 
 **example**
 
@@ -71,3 +70,13 @@ While tools should have knowledge of the artifacts they work with, so should a r
 | `samples/helm/hello-world:1.0` | helm chart | `helm pull ...` |
 | `samples/arm/hello-world:1.0` | arm | `az deployment create ...` |
 | `samples/cnab/hello-world:1.0` | CNAB | `duffle pull ...` |
+
+## Expanded Media Types
+To identify registry artifacts the proposal makes use of an [expanded list of media types](./mediaTypes.md)
+
+## Examples
+The following examples expand on each artifact type
+
+- [Container images](./container-image/readme.md)
+- [Helm charts](./helm/readme.md)
+- [CNAB](./cnab/readme.md)
