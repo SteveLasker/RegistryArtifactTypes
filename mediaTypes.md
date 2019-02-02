@@ -47,4 +47,12 @@ To provide for user friendly names, a list of media types and short/friendly nam
 |`application/vnd.cncf.helm.index.v3+json` | Helm | [Helm](https://helm.sh)
 |`application/vnd.oci.cnab.index.v1+json` | CNAB | [Duffle](https://cnab.io), [Docker-application](https://www.docker.com/search/node?keys=docker-application)|
 
+| Artifact Type | Display Name | Info | 
+|-|-|-|
+|`vnd.oci.image.multi-arch.v1` | Multi-arch Image | [Docker](https://www.docker.com/products/docker-desktop) *|
+|`vnd.oci.image.manifest.v1` | Image | [Docker](https://www.docker.com/products/docker-desktop) * |
+|`vnd.cncf.helm.v3` | Helm | [Helm](https://helm.sh)
+|`vnd.oci.cnab.v1` | CNAB | [Duffle](https://cnab.io), [Docker-application](https://www.docker.com/search/node?keys=docker-application)|
+
+
 \* most registry providers automatically convert `oci.image` manifests to the format requested by the client. 

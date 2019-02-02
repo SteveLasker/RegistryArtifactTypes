@@ -1,6 +1,7 @@
 {
   "schemaVersion": 2,
-  "mediaType": "application/vnd.oci.image.index.v1+json",
+  "mediaType": "application/vnd.oci.index.v1+json",
+  "artifactType": "vnd.cncf.helm.v3",
   "config": {
     "mediaType": "application/vnd.cncf.helm.chart.config.v1+json",
     "size": 7023,
@@ -11,12 +12,14 @@
     },
     "manifests": [
       {
-        "mediaType": "application/vnd.cncf.helm.chart.v3+json",
+        "mediaType": "application/vnd.oci.manifest.v1+json",
+        "artifactType": "vnd.cncf.helm.v3",
         "size": 4288,
         "digest": "sha256:10b995d6204131069af3e4f00dc1d3758d517a5edb29e5757d3c2858d5613127"
       },
       {
-        "mediaType": "application/vnd.cncf.helm.values.v3+json",
+        "mediaType": "application/vnd.oci.manifest.v1+json",
+        "artifactType": "vnd.cncf.helm.values.v3",
         "size": 323,
         "digest": "sha256:4a2f7cd2e53307d7e9018b24f7ea9e3b9bad260f86359912707c5cb80aafa60b"
       }

@@ -1,6 +1,7 @@
 {
   "schemaVersion": 2,
-  "mediaType": "application/vnd.oci.image.manifest.v1+json",
+  "mediaType": "application/vnd.oci.manifest.v1+json",
+  "artifactType": "vnd.oci.image.manifest.v1",
   "config": {
     "mediaType": "application/vnd.oci.image.config.v1+json",
     "size": 16078,
