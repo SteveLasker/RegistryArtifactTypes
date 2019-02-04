@@ -1,64 +1,45 @@
 # CNAB - Cloud Native Application Bundle
 
+CNABs are interesting as they aren't necessarily a specific artifact in a registry, rather they may reference other artifacts in a registry. A CNAB can reference an invocation image, a Helm Chart, or several other images that may be deployed. It may also reference arm or cloud formation templates to establish infrastructure.
 
-CNABs are interesting as they aren't a specific artifact in a registry, rather they may reference other artifacts in a registry. A CNAB can reference an invocation image, a Helm Chart, or several other images that may be deployed. It may also reference arm or cloud formation templates to establish infrastructure.
+> **Note:** *this is just an illustrative example of the power of decoupling artifactTypes from mediaTypes, allowing reuse of existing artifacts*
 
-## CNAB Index
+> The persistance format has yet to be decided by the CNAB community, the following represents what a CNAB *could* be expressed as.
 
-`application/vnd.oci.cnab.index.v3+json`
+## CNAB Manifest
+A CNAB manifest utilizes `oci.manifest` to represent a `cnab.manifest`
+```json
+"mediaType": "application/vnd.oci.manifest.v1+json",
+"artifactType": "application/vnd.deislabs.cnab.manifest.v1"
+```
+CNABs add `artifactTypes` representing the `cnab.config`, which includes which layer is used as the invocation image and `cnab.component` which represents objects that are otherwise unknown to registries. A `cnab.config` may indicate whether the bundle uses an oci-image as it's invocation image, or another artifact that may be represented as a `cnab.component`.
 
-Contains a collection of manifests, including a configuration manifest which defines the execution of bundle, and any other registry artifact. A bundle is a collection of known and unknown registry artifact types.
+A CNAB manifest can reference any other oci-manifest, or oci-index when it requires a multi-arch image. 
 
-In the following example, `oci.cnab.config` references a layer that hosts the configuration of the CNAB. This is where the invocation image is identified, and whether the invocation is a docker image, or some other executable; such as VM or other CNAB drivers.
+CNAB specific artifacts include: 
 
-The image references, including the invocation image, may reference a collection of multi-arch images. For instance the invocation image may support Linux, Windows and ARM. Since the index maintains a pointer to existing `oci.image.index` manifests, no additional schema is required.
-
-A CNAB may contain references to helm charts (`cncf.helm.chart.index`), deferring the details to the helm registry spec. 
+| mediaType | artifactType | usage |
+|-|-|-|
+|`application/vnd.oci.manifest.v1+json`|`application/vnd.deislabs.cnab.manifest.v1`|CNAB Manifest|
+|`application/vnd.oci.config.v1+json`|`application/vnd.deislabs.cnab.config.v1`|CNAB Config|
+|`application/vnd.oci.layer.v1.tar`|`application/vnd.deislabs.cnab.component.v1`|CNAB component|
 
 ## CNAB Components
 
-To support arbitrary objects, which may be 100k to 100gb, `oci.cnab.component` is used to identify blobs that have no external use, beyond a CNAB. 
+To support arbitrary objects, which may be 100k to 100gb, `deislabs.cnab.component` is used to identify blobs that have no external use, beyond a CNAB. 
 
 By separating known registry artifacts from arbitrary blobs, a CNAB can reference objects that are individually searchable, while hiding objects that are only interesting to CNABs.
 
-```yaml
-{
-  "schemaVersion": 2,
-  "mediaType": "application/vnd.oci.image.manifest.v1+json",
-  "config": {
-    "manifests": [
-      {
-        "mediaType": "application/vnd.oci.cnab.config.v1+json",
-        "size": 4288,
-        "digest": "sha256:10b995d6204131069af3e4f00dc1d3758d517a5edb29e5757d3c2858d5613127"
-      }
-    ]
-  },
-  "manifests": [
-    {
-      "mediaType": "application/vnd.oci.cnab.component.v1+json",
-      "size": 4288,
-      "digest": "sha256:10b995d6204131069af3e4f00dc1d3758d517a5edb29e5757d3c2858d5613127"
-    },
-    {
-      "mediaType": "application/vnd.oci.image.index.v1+json",
-      "size": 93288,
-      "digest": "sha256:10b995d6204131069af3e4f00dc1d3758d517a5edb29e5757d3c2858d5613127"
-    },
-    {
-      "mediaType": "application/vnd.oci.image.index.v1+json",
-      "size": 2828,
-      "digest": "sha256:a50c80b8ad64bd98f3f50770714cbe2904951d32c5a59860f74eb7b89958eb5e"
-    },
-    {
-      "mediaType": "application/vnd.oci.image.index.v1+json",
-      "size": 2828,
-      "digest": "sha256:4a2f7cd2e53307d7e9018b24f7ea9e3b9bad260f86359912707c5cb80aafa60b"
-    },
-    {
-      "mediaType": "application/vnd.cncf.helm.chart.index.v1+json",
-      "size": 7023,
-      "digest": "sha256:b5b2b2c507a0944348e0303114d8d93aaaa081732b86451d9bce1f432a537bc7"
-    }
-  ]
-}```
+## CNAB Examples
+
+In the following example, `oci.cnab.config` references a layer that hosts the configuration of the CNAB. This is where the invocation image is identified, and whether the invocation is a docker image, or some other executable; such as VM or other CNAB drivers.
+
+The image references, including the invocation image, may reference a collection of multi-arch images. For instance the invocation image may support Linux, Windows and ARM. Since the index maintains a pointer to an existing `oci.image.index` manifests, no additional schema is required.
+
+`duffle install myblog demo42.azurecr.io/samples/cnab/wordpress:0.1.0`
+
+The following are examples of of a Wordpress bundle:
+
+- [Wordpress CNAB](./wordpress-cnab-index.json), which references other artifacts within the registry
+- [Wordpress CNAB component](./wordpress-cnab-component.json), representing an item that may not be otherwise represented in OCI registries. 
+
