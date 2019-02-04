@@ -3,7 +3,7 @@
 ## Overview
 
 A proposal for supporting multiple artifact types within [oci distribution-spec](https://github.com/opencontainers/distribution-spec)
-The proposal decouples the OCI `mediaType` from representing a specific artifact ([oci image](https://github.com/opencontainers/image-spec)), to represent a persistance format. It proposes a seperate `artifactType` property to identify what the `mediaType` represents.
+The proposal decouples the OCI `mediaType` from representing a specific artifact ([oci image](https://github.com/opencontainers/image-spec)), to represent a persistance format. It proposes a separate *required* `artifactType` property to identify what the `mediaType` represents.
 
 ## Proposal
 
