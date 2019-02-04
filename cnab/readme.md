@@ -1,8 +1,7 @@
 # CNAB - Cloud Native Application Bundle
 
-CNABs are interesting as they aren't just a specific artifact in a registry, rather they reference other artifacts in a registry. A CNAB can reference an invocation image, a Helm Chart, or several other images that would be deployed. It may also reference arm or cloud formation templates to establish the infrastructure.
 
-The cnab index can contain pointers to other artifacts in the registry. 
+CNABs are interesting as they aren't a specific artifact in a registry, rather they may reference other artifacts in a registry. A CNAB can reference an invocation image, a Helm Chart, or several other images that may be deployed. It may also reference arm or cloud formation templates to establish infrastructure.
 
 ## CNAB Index
 
@@ -25,7 +24,7 @@ By separating known registry artifacts from arbitrary blobs, a CNAB can referenc
 ```yaml
 {
   "schemaVersion": 2,
-  "mediaType": "application/vnd.oci.image.index.v1+json",
+  "mediaType": "application/vnd.oci.image.manifest.v1+json",
   "config": {
     "manifests": [
       {

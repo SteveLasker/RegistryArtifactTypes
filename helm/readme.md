@@ -1,3 +1,102 @@
+Helm Manifest must contain at lest one:
+
+```json
+"mediaType": "application/vnd.oci.layer.v1+tar",
+"artifactType": "application/vnd.cncf.helm.chart.v1+tar"
+```
+Helm Manifest MAY optionally contain ONE:
+
+```json
+"mediaType": "application/vnd.oci.layer.v1+json",
+"artifactType": "application/vnd.cncf.helm.values.v1+json"
+```
+**Helm Manifest example**
+```json
+{
+  "schemaVersion": 2,
+  "mediaType": "application/vnd.oci.manifest.v1+json",
+  "artifactType": "application/vnd.cncf.helm.v3",
+  "config": {
+    "mediaType": "application/vnd.oci.config.v1+json",
+    "artifactType": "application/vnd.cncf.helm.config.v3",
+    "size": 7023,
+    "digest": "sha256:b5b2b2c507a0944348e0303114d8d93aaaa081732b86451d9bce1f432a537bc7",
+    "annotations": {
+      "org.opencontainers.title": "wordpress",
+      "org.opencontainers.version": "0.1.0"
+    },
+    "manifests": [
+      {
+        "mediaType": "application/vnd.oci.manifest.v1+json",
+        "artifactType": "application/vnd.cncf.helm.chart.v3",
+        "size": 4288,
+        "digest": "sha256:10b995d6204131069af3e4f00dc1d3758d517a5edb29e5757d3c2858d5613127"
+      },
+      {
+        "mediaType": "application/vnd.oci.manifest.v1+json",
+        "artifactType": "application/vnd.cncf.helm.values.v3",
+        "size": 323,
+        "digest": "sha256:4a2f7cd2e53307d7e9018b24f7ea9e3b9bad260f86359912707c5cb80aafa60b"
+      }
+    ]
+  }
+}
+```
+### Helm Chart layer manifest
+To further illustrate how layers may be used within Helm, the Chart may be expressed as:
+```json
+{
+  "schemaVersion": 2,
+  "mediaType": "application/vnd.oci.manifest.v1+json",
+  "artifactType": "application/vnd.cncf.helm.chart.v3",
+  "layers": [
+    {
+      "mediaType": "application/vnd.oci.layer.v1.tar+gzip",
+      "artifactType": "application/vnd.cncf.helm.chart.v1",
+      "size": 3155,
+      "digest": "sha256:9a1a13172ed974323f7c35153e8b23b8fa1c85355b6b26cc3127e640e45ef0aa"
+    }
+  ]
+}
+```
+### Helm Values layer manifest
+The separately stored values of a helm chart may be expressed as: 
+```json
+{
+  "schemaVersion": 2,
+  "mediaType": "application/vnd.oci.manifest.v1+json",
+  "artifactType": "application/vnd.cncf.helm.values.v3",
+  "layers": [
+    {
+      "mediaType": "application/vnd.oci.layer.v1+json",
+      "artifactType": "application/vnd.cncf.helm.values.v3",
+      "size": 3155,
+      "digest": "sha256:9a1a13172ed974323f7c35153e8b23b8fa1c85355b6b26cc3127e640e45ef0aa"
+    }
+  ]
+}
+```
+
+
+
+
+
+
+
+-------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Helm 
 Helm charts represent a [collection of files used for a kubernetes deployment](https://github.com/demo42/helloworld-deploy/tree/master/helm/helloworld). While a single helm chart could be represented as a single manifest and compressed layer, there are some interesting possibilities of reuse and change tracking. 
 - **resuse** - just as image layers are shared across images, being able to track different usages of wordpress charts can be useful. While reuse can also account for saving space in a registry, the total size of charts are closely equivalent to the manifests and metadata used to track them.
