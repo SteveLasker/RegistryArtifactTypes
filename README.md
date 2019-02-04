@@ -1,7 +1,9 @@
 # Registry Artifact Types
 OCI compliant registries are becoming [Cloud Native Artifact Registries](https://stevelasker.blog/2019/01/25/cloud-native-artifact-stores-evolve-from-container-registries/)
 
-While a registry could just store arbitrary objects, leaving it to the user to know what blob should be used by which tool, there are many benefits to knowing what each artifact is.
+A registry could store arbitrary objects, users might know which `object:tag` to pull. 
+client tools could understand 
+leaving it to client tools to interact with a  it to the user to know what blob should be used by which tool, there are many benefits to knowing what each artifact is.
 
 Some of the challenges include: 
 
@@ -21,7 +23,6 @@ Some of the challenges include:
 
 The [OCI Distribution Image Specification](https://github.com/opencontainers/image-spec/) has a very open standard. While extremely powerful and flexible, without structure, we wind up with a cloud based file system full of blobs that tools will have no ability to differentiate. 
 
-This repo attempts to demonstrate several structured use cases of the OCI Indexes to scale from multi-layered, multi-architecture docker images, to relatively simple helm charts, to more complex CNAB examples that can encompass every type of artifact in a registry.
 
 ## Baseline Reference - Docker Images
 
@@ -58,18 +59,6 @@ duffle install \
   demo42.azurecr.io/sample/cnab/hello-world:1.0
 ```
 
-## Registry Listing
-
-While tools should have knowledge of the artifacts they work with, so should a registry. By providing information on the artifact, registries can display artifacts, with context and details.
-
-**Registry:** `demo42.azurecr.io`
-
-| artifact reference | type | actions|
-|-|-|-|
-| `samples/image/hello-world:1.0` | docker image | `docker pull ...` |
-| `samples/helm/hello-world:1.0` | helm chart | `helm pull ...` |
-| `samples/arm/hello-world:1.0` | arm | `az deployment create ...` |
-| `samples/cnab/hello-world:1.0` | CNAB | `duffle pull ...` |
 
 ## Expanded Media Types
 To identify registry artifacts the proposal makes use of an [expanded list of media types](./mediaTypes.md)
@@ -80,3 +69,7 @@ The following examples expand on each artifact type
 - [Container images](./container-image/readme.md)
 - [Helm charts](./helm/readme.md)
 - [CNAB](./cnab/readme.md)
+
+
+
+This repo attempts to demonstrate several structured use cases of the OCI Indexes to scale from multi-layered, multi-architecture docker images, to relatively simple helm charts, to more complex CNAB examples that can encompass every type of artifact in a registry.

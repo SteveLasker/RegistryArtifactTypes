@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "mediaType": "application/vnd.oci.manifest.v1+json",
-  "artifactType": "application/vnd.cncf.helm.v3",
+  "artifactType": "application/vnd.cncf.helm.manifest.v3",
   "config": {
     "mediaType": "application/vnd.oci.config.v1+json",
     "artifactType": "application/vnd.cncf.helm.config.v3",
