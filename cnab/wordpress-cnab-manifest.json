@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "mediaType": "application/vnd.oci.manifest.v1+json",
+  "mediaType": "application/vnd.deislabs.cnab.manifest.v1+json",
   "config": {
     "manifests": [
       {
