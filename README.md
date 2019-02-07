@@ -1,9 +1,13 @@
-# Proposal: Decoupling Persistence from Artifact Type 
+# Registry Artifact Types
 
 ## Overview
 
-A proposal for supporting multiple artifact types within [oci distribution-spec](https://github.com/opencontainers/distribution-spec)
-The proposal decouples the OCI `mediaType` from representing a specific artifact ([oci image](https://github.com/opencontainers/image-spec)), to represent a persistance format. It proposes a separate *required* `artifactType` property to identify what the `mediaType` represents.
+Example formats for supporting multiple artifact types within [oci distribution-spec](https://github.com/opencontainers/distribution-spec)
+
+This proposal demonstrates how various artifact types can leverage [OCI Mmanifest](https://github.com/opencontainers/image-spec/blob/master/manifest.md) and [OCI Index](https://github.com/opencontainers/image-spec/blob/master/image-index.md) to represent their types. It demonstrates the benefits for leveraging `manifest` to represent a specific type, leaving `index` for collections of mixed artifacts. 
+
+The proposal uses additional `mediaTypes`, to express the type of artifact, and the layers.
+
 
 ## Proposal
 
@@ -38,6 +42,39 @@ az deployment create demo42.azurecr.io/arm/wordpress:1.0
 ```sh
 aws ecs run-task --task-definition demo42.dkr.ecr.us-east-1.amazonaws.com/wordpress:1.0
 ```
+
+
+## Manifest and Index
+The [OCI image-spec](https://github.com/opencontainers/image-spec/) expresses two top level objects:
+
+- [OCI Mmanifest](https://github.com/opencontainers/image-spec/blob/master/manifest.md): 
+  Represents a platform specific artifact. 
+- [OCI Index](https://github.com/opencontainers/image-spec/blob/master/image-index.md): Represents a collection of artifacts, typically pivoted on a platform. For container images, a windows, linux and arm version could be provided. 
+
+Consumers can express either a manifest or an index by a `:tag` reference:
+
+- `demo42.azurecr.io/samples/images/hello-world:1.0`
+
+The above reference could represent windows, linux, arm, or it could represent a multi-arch image. 
+
+Additional tags might be:
+- `demo42.azurecr.io/samples/images/hello-world:1.0-windows`
+- `demo42.azurecr.io/samples/images/hello-world:1.0-linux`
+- `demo42.azurecr.io/samples/images/hello-world:1.0-arm`
+
+In this case, executing `docker run demo42.azurecr.io/samples/images/hello-world:1.0` will cause the docker client to pull the manifest for the `:1.0` reference. Since this is a multi-arch manifest, the docker client will process the manifest, find the platform that matches, and make a subsequent request for the digest that represents: `demo42.azurecr.io/samples/images/hello-world:1.0-linux`
+
+This flow works well for multi-arch scenarios. The index represents a collection of images. 
+### Registry Listing
+A registry listing, could be visualized as:
+| tags | icon[s] | type | actions|
+|-|-|-|-|
+| `samples/image/hello-world:1.0` |![](./images/container-windows.png) ![](./images/container-linux.png) ![](./images/container-arm.png)| container image | `docker run ...` |
+| `samples/image/hello-world:1.0-windows` |![](./images/container-windows.png)| container image | `docker run ...` |
+| `samples/image/hello-world:1.0-linux` |![](./images/container-linux.png)| container image | `docker run ...` |
+| `samples/image/hello-world:1.0-arm` |![](./images/container-arm.png)| container image | `docker run ...` |
+
+
 
 ## Leveraging Registries for Additional Artifacts
 
