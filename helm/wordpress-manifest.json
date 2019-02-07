@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "mediaType": "application/vnd.cncf.helm.manifest.v3+json",
+  "mediaType": "application/vnd.oci.image.manifest.v1+json",
   "config": {
     "mediaType": "application/vnd.cncf.helm.config.v3+json",
     "size": 7023,
