@@ -67,6 +67,7 @@ In this case, executing `docker run demo42.azurecr.io/samples/images/hello-world
 This flow works well for multi-arch scenarios. The index represents a collection of images. 
 ### Registry Listing
 A registry listing, could be visualized as:
+
 | tags | icon[s] | type | actions|
 |-|-|-|-|
 | `samples/image/hello-world:1.0` |![](./images/container-windows.png) ![](./images/container-linux.png) ![](./images/container-arm.png)| container image | `docker run ...` |
