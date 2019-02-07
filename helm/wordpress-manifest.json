@@ -6,8 +6,7 @@
     "size": 7023,
     "digest": "sha256:b5b2b2c507a0944348e0303114d8d93aaaa081732b86451d9bce1f432a537bc7",
     "annotations": {
-      "org.opencontainers.title": "wordpress",
-      "org.opencontainers.version": "0.1.0"
+      "io.cncf.helm.appVersion": "0.1.0"
     }
   },
   "layers": [
