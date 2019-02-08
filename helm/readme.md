@@ -12,7 +12,7 @@ Helm charts represent a [collection of files used for a kubernetes deployment](h
     --set frontend.image=demo42.azurecr.io/apps/frontend:aad4
   ```
 
-> **Note:** *this is just an illustrative example of the power of decoupling artifactTypes from mediaTypes.*
+> **Note:** *this is just an illustrative example of custom mediaTypes.*
 
 > The persistance format has yet to be decided by the Helm community, the following represents what a Helm chart *could* be expressed as.
 
@@ -23,48 +23,31 @@ Unlike images, helm charts do not need platform specific references. The images 
 
 However, the manifest can be used to account for the different chart elements, allowing for the chart and values file to be referenced individually. 
 
-```json
-"mediaType": "application/vnd.oci.manifest.v1+json",
-"artifactType": "application/vnd.cncf.helm.manifest.v3"
-```
 
-### Helm Chart Layer ArtifactTypes
-Unlike OCI Image manifests, Helm charts use layers to represent different elements of a chart. The files that make up the chart may be separated from the values file *(parameter values)*. By separating values, multiple deployments of the same chart, only differentiated by the values, may be tracked and evaluated by new Helm tools.
+
+## Helm Chart
+> **Note:** *this is just an illustrative example of mediaTypes.*
+
+> The persistance format has yet to be decided by the Helm community, the following represents what a Helm chart *could* be expressed as.
+
+Unlike OCI Image manifests, Helm charts use layers to represent different elements of a chart. The files that make up the chart are separated from the values file *(parameter values)*. By separating values, multiple deployments of the same chart, only differentiated by the values, may be tracked and evaluated by new Helm tools.
 
 The following represent `mediaTypes` used to represent manifests and layers of a Helm chart. The registry need not know of the `artifactTypes` for persisting the object. Rather, these are used by tooling specific to Helm, including other tools that may process the Helm object (eg: compliance scanners)
-| mediaType | artifactType | usage |
-|-|-|-|
-|`application/vnd.oci.manifest.v1+json`|`application/vnd.cncf.helm.manifest.v3`|Helm Chart Manifest|
-|`application/vnd.oci.config.v1+json`|`application/vnd.cncf.helm.config.v3`|Helm Config|
-|`application/vnd.oci.layer.v1.tar`|`application/vnd.cncf.helm.chart.v3`|Helm Chart archive layer|
-|`application/vnd.oci.layer.v1+json`|`application/vnd.cncf.helm.values.v3`|Helm Values layer |
 
-Helm layers must contain at lest one:
 
-```json
-"mediaType": "application/vnd.oci.layer.v1+tar",
-"artifactType": "application/vnd.cncf.helm.chart.v1+tar"
-```
-Helm layers MAY optionally contain ONE:
-
-```json
-"mediaType": "application/vnd.oci.layer.v1+json",
-"artifactType": "application/vnd.cncf.helm.values.v1+json"
-```
+| mediaType | usage |
+|-|-|
+|`application/vnd.cncf.helm.config.v3`|Helm Config|
+|`application/vnd.cncf.helm.chart.layer.v3`|Helm Chart archive layer|
+|`application/vnd.cncf.helm.values.layer.v3`|Helm Values layer |
 
 ## Helm Examples
 
 `helm install demo42.azurecr.io/samples/helm/wordpress:0.1.0`
 
 
-The following are examples of of a Wordpress chart:
+The following are examples of a Wordpress chart:
 
-- [Wordpress chart manifest](./wordpress-index.json), 
-- [Wordpress chart](./wordpress-chart.json), comprising of all files that represent the chart
-- [Wordpress values](./wordpress-value.json), demonstrating how values may be abstracted from the chart
+- [Wordpress chart manifest](./wordpress-manifest.json), 
 
-## Deploying Wordpress with CNAB
 
-Helm provides configuration of Kubernetes. Using CNAB, a user could deploy the wordpress webserver, while utilizing a cloud provider managed database. 
-
-See [CNAB](../cnab/readme.md) examples

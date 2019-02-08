@@ -1,9 +1,6 @@
 # OCI Image
 
-The OCI Image spec conflates the persistance format with the image spec definition. 
-With the decoupling of persistance from what the object represents, we can define multiple artifacts with the existing `mediaTypes`
-
-The following are examples of the changes required to represent an OCI Image.
+The following are reference examples of an OCI Image.
 
 The examples in this folder represent
 

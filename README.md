@@ -340,3 +340,6 @@ Detailed examples:
 - [Helm Chart](https://github.com/SteveLasker/RegistryArtifactTypes/blob/master/helm/readme.md)
 - [CNAB](https://github.com/SteveLasker/RegistryArtifactTypes/blob/master/cnab/readme.md) 
 
+[Image Index](https://github.com/SteveLasker/RegistryArtifactTypes/blob/master/container-image/wordpress-index.json) as reference
+[Helm Manifest](https://github.com/SteveLasker/RegistryArtifactTypes/blob/master/helm/wordpress-manifest.json)
+[CNAB Manifest](https://github.com/SteveLasker/RegistryArtifactTypes/blob/master/cnab/wordpress-cnab-manifest.json)
