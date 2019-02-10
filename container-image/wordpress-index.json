@@ -1,11 +1,9 @@
 {
   "schemaVersion": 2,
-  "mediaType": "application/vnd.oci.index.v1+json",
-  "artifactType": "application/vnd.oci.image.index.v1",
+  "mediaType": "application/vnd.oci.image.index.v1+json",
   "manifests": [
     {
-      "mediaType": "application/vnd.oci.manifest.v1+json",
-      "artifactType": "application/vnd.oci.image.manifest.v1",
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
       "size": 4288,
       "digest": "sha256:10b995d6204131069af3e4f00dc1d3758d517a5edb29e5757d3c2858d5613127",
       "platform": {
@@ -14,8 +12,7 @@
       }
     },
     {
-      "mediaType": "application/vnd.oci.manifest.v1+json",
-      "artifactType": "application/vnd.oci.image.manifest.v1",
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
       "size": 4288,
       "digest": "sha256:33c5d954c76495826126178ded2113d1ada0a1ea70f95b65f866312462c6e957",
       "platform": {
@@ -25,8 +22,7 @@
       }
     },
     {
-      "mediaType": "application/vnd.oci.manifest.v1+json",
-      "artifactType": "application/vnd.oci.image.manifest.v1",
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
       "size": 4288,
       "digest": "sha256:4a2f7cd2e53307d7e9018b24f7ea9e3b9bad260f86359912707c5cb80aafa60b",
       "platform": {
@@ -36,8 +32,7 @@
       }
     },
     {
-      "mediaType": "application/vnd.oci.manifest.v1+json",
-      "artifactType": "application/vnd.oci.image.manifest.v1",
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
       "size": 4288,
       "digest": "sha256:495eaeaff381bca462d297c6460bd2a7020ec63a99c49469fc1970d6833afeb8",
       "platform": {
@@ -47,8 +42,7 @@
       }
     },
     {
-      "mediaType": "application/vnd.oci.manifest.v1+json",
-      "artifactType": "application/vnd.oci.image.manifest.v1",
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
       "size": 4288,
       "digest": "sha256:1a7ce8210ec1244a8d832b8b50b8460e5d7f7fef2be6a4c559cbf4cac241d165",
       "platform": {
@@ -57,8 +51,7 @@
       }
     },
     {
-      "mediaType": "application/vnd.oci.manifest.v1+json",
-      "artifactType": "application/vnd.oci.image.manifest.v1",
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
       "size": 4288,
       "digest": "sha256:6901b2569727e647ea576bc2814f32a40401c084c8edd621745dc39e08682b78",
       "platform": {
