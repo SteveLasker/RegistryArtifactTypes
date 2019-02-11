@@ -1,11 +1,21 @@
 # New Artifact Requirements
 
+If we assume registries can host various artifact types, the next set of question include:
+
+- How does one reason over the various artifact types in a registry?
+- How would a registry listing represent the different artifact types? 
+  - Can a registry show an icon and/or a short text identifier? 
+- If a registry listings wishes to provide optimized action points, such as gestures to deploy Helm Chart, ecs task, or deploying an image directly to a container service; how would the UI know which actions to surface on which artifact types?
+- How would vulnerability scanners know how to scan the various artifacts? Would scanners perform different scanning routines, based on the artifact type? How do they know the type?
+
+## Requirements 
 Adding new artifacts to an OCI registry involves requirements from two distinct groups.
 
 - [Requirements of registries to host new artifact types](#Registry-Requirements-of-New-Artifact-Types)
 - [Requirements of the new artifact type](#Artifact-Requirements)
 
 ![](./images/registry-artifact-split-of-concerns.png)
+
 
 ## Registry Requirements of New Artifact Types
 
