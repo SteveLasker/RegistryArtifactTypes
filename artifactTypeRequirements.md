@@ -124,7 +124,7 @@ To provide artifact tooling the ability to operate independently of other toolin
 
 While there's a user goal for enabling authentication, it's unclear if it's feasible to provide a cloud agnostic solution for authentication. 
 
-### Ease of support
+## Ease of support
 
 To support a vibrant ecosystem, it must be easy for registries to support new artifact types. 
 
