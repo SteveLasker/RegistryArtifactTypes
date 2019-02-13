@@ -87,5 +87,7 @@ Other options considered [annotations](https://github.com/opencontainers/image-s
 
 Annotations are great for optional search results and details of an artifact. However, annotations are optional, making it a little too unstructured to provide deterministic definitions of the objects within a registry.
 
+A docker client, or other client that expects to pull Images could pull a digest or tag and fail. The existing clients know how to parse the mediaType, and if they see a mediaType the don't recognize, they know to ignore it. 
+
 While annotations can be fit within the pre-release OCI image-spec, it's proposed this is the time to evolve the spec to decouple persistance formating from artifact declaration.
 
