@@ -16,6 +16,7 @@ A simplified example of a registry listing might look like:
 | artifact reference | icon | type | actions|
 |-|-|-|-|
 | `samples/image/hello-world:1.0` |![](./images/oci-container.png)| container image | `docker run ...` |
+| `samples/image/hello-world-doc:1.0`|![](./images/doc.png)|doc| `markdown`|
 | `samples/helm/hello-world:1.0` |![](./images/helm.png)|  helm chart | `helm install ...` |
 | `samples/cnab/hello-world:1.0` |![](./images/cnab.jpg)| CNAB | `duffle install ...` |
 | `samples/arm/hello-world:1.0` |![](./images/arm.png)| arm | `az deployment create ...` |
