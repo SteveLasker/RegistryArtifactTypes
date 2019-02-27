@@ -4,13 +4,12 @@ Artifact tools will need the ability to query their specific artifacts from a re
 
 To uniquely identify artifact types within a registry, the `manifest.config.mediaType` will support additional `mediaTypes`. 
 
-Each artifact tooling MAY implement additional layer `mediaTypes`.
 
 ## Media Types
 
-In this proposal, new `mediaTypes` are supported by the [config property descriptor](https://github.com/opencontainers/image-spec/blob/master/manifest.md#image-manifest-property-descriptions)
+In this proposal, new `mediaTypes` are supported by the [`manifest.config` property descriptor](https://github.com/opencontainers/image-spec/blob/master/manifest.md#image-manifest-property-descriptions)
 
-By supporting new `config.mediaTypes`, registry tools will understand the types stored. 
+By supporting new `manifest.config.mediaTypes`, registry tools will understand the types stored. 
 A simplified example of a registry listing might look like:
 
 | artifact reference | icon | type | actions|
@@ -62,7 +61,7 @@ The options are:
 
 Each new artifact will define how they persist their layers. OCI Images have ordinal layers, supporting overlaying of files. Other artifact types may use layers to represent different objects. For instance, Helm might support a layer for the helm chart, with another layer for the values.
 
-The [Layer mediaType descriptor in the OCI Image spec](https://github.com/opencontainers/image-spec/blob/master/manifest.md#image-manifest-property-descriptions) identifies the `mediaType` MUST support one of the existing layer formats. 
+The [layer mediaType descriptor in the OCI Image spec](https://github.com/opencontainers/image-spec/blob/master/manifest.md#image-manifest-property-descriptions) identifies the `mediaType` MUST support one of the existing layer formats. 
 
 - **`layers`** *array of objects*
 
@@ -90,7 +89,7 @@ The [Layer mediaType descriptor in the OCI Image spec](https://github.com/openco
 
 Each artifact author can extend these mediaTypes to identify their usage. 
 
-A registry need not parse the `layer.mediaType`, as this is information processed by tooling that understands the specific artifact.
+A registry need not parse the `layer.mediaType`, as this is information processed by tooling that understands the specific artifact, providing it ownership of how layers are represented.
 
 ## Example Manifests
 
