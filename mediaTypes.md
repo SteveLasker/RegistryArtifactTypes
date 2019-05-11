@@ -166,9 +166,9 @@ The following represent `mediaTypes` used to represent manifests and layers of a
 
 | mediaType | usage |
 |-|-|
-|`application/vnd.cncf.helm.config.v3`|Helm Config|
-|`application/vnd.cncf.helm.chart.layer.v3`|Helm Chart archive layer|
-|`application/vnd.cncf.helm.values.layer.v3`|Helm Values layer |
+|`application/vnd.cncf.helm.config.v1`|Helm Config|
+|`application/vnd.cncf.helm.chart.chart.layer.v1+tar`|Helm Chart archive layer|
+|`application/vnd.cncf.helm.chart.meta.layer.v1+json`|Helm metadata layer |
 
 **Helm manifest example**
 
@@ -179,7 +179,7 @@ The following represent `mediaTypes` used to represent manifests and layers of a
   "schemaVersion": 2,
   "mediaType": "application/vnd.oci.image.manifest.v1+json",
   "config": {
-    "mediaType": "application/vnd.cncf.helm.config.v3+json",
+    "mediaType": "application/vnd.cncf.helm.chart.config.v1+json",
     "size": 7023,
     "digest": "sha256:b5b2b2c507a0944348e0303114d8d93aaaa081732b86451d9bce1f432a537bc7",
     "annotations": {
@@ -188,12 +188,12 @@ The following represent `mediaTypes` used to represent manifests and layers of a
   },
   "layers": [
     {
-      "mediaType": "application/vnd.cncf.helm.chart.layer.v3.tar+gzip",
+      "mediaType": "application/vnd.cncf.helm.chart.layer.v1.tar+gzip",
       "size": 3155,
       "digest": "sha256:9a1a13172ed974323f7c35153e8b23b8fa1c85355b6b26cc3127e640e45ef0aa"
     },    
     {
-      "mediaType": "application/vnd.cncf.helm.values.layer.v3+tar",
+      "mediaType": "application/vnd.cncf.helm.chart.meta.layer.v1+json",
       "size": 3155,
       "digest": "sha256:9a1a13172ed974323f7c35153e8b23b8fa1c85355b6b26cc3127e640e45ef0aa"
     }
