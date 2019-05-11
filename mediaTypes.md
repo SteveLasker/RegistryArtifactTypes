@@ -28,7 +28,7 @@ az acr repository show-tags --name demo42 --repository helm/hello-world
 Repository: helm/hello-world
 Tag         Type
 ------------------
-1.0-helm    helm
+1.0-helm    Helm Chart
 ```
 
 ## Parsing `manifest.config.mediaType`
